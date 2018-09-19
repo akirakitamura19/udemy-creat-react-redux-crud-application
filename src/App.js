@@ -1,33 +1,48 @@
-import React from 'react';
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
 
-const App = () => {
-  const profiles = [
-    {name:"Aki", age:28},
-    {name:"Airi", age:27},
-    {age:1}
-  ]
+const App = () => (<Counter></Counter>)
 
-  return (
-    <div>
-      <User name={"Aki"} age={28} />
-      {
-        profiles.map((profile, index) => {
-          return <User name={profile.name} age={profile.age} key={index} />
-        })
+class Counter extends Component {
+  constructor(props) {
+      super(props)
+      this.state = {
+        plusCount: 0,
+        minusCount: 0,
+        totalCount: 0,
       }
-    </div>
-      )
     }
 
-  const User = (props) => {
-    return <div>I am {props.name} and {props.age} years old.</div>
-}
 
-User.propTypes = {
-  name: PropTypes.string.isRequired,
-  age: PropTypes.number
-}
+  handlePlusCount = () => {
+    this.setState(
+      {
+        plusCount: this.state.plusCount+1,
+        totalCount: this.state.totalCount+1
+      }
+    )
+  }
 
+  handleMinusCount = () => {
+    this.setState(
+      {
+        minusCount: this.state.minusCount-1,
+        totalCount: this.state.totalCount-1
+      }
+    )
+  }
+
+  render() {
+    console.log(this.state)
+    return (
+      <div>
+        <div>Plus Count: {this.state.plusCount} </div>
+        <div>Minus Count: {this.state.minusCount} </div>
+        <h1>Total Count: {this.state.totalCount} </h1>
+        <button onClick={this.handlePlusCount}>+1</button>
+        <button onClick={this.handleMinusCount}>-1</button>
+      </div>
+    )
+  }
+}
 
 export default App;
