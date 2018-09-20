@@ -1,45 +1,35 @@
 import React, { Component } from 'react';
 
-const App = () => (<Counter></Counter>)
+const App = () => (
+  <div>
+    <Counter name='Taro'/>
+  </div>
+)
 
 class Counter extends Component {
-  constructor(props) {
-      super(props)
-      this.state = {
-        plusCount: 0,
-        minusCount: 0,
-        totalCount: 0,
-      }
+  constructor (props) {
+    super(props)
+    this.state = {
+      count: 0
     }
-
+  }
 
   handlePlusCount = () => {
-    this.setState(
-      {
-        plusCount: this.state.plusCount+1,
-        totalCount: this.state.totalCount+1
-      }
-    )
+    this.setState({count: this.state.count + 1})
   }
 
   handleMinusCount = () => {
-    this.setState(
-      {
-        minusCount: this.state.minusCount-1,
-        totalCount: this.state.totalCount-1
-      }
-    )
+    this.setState({count: this.state.count - 1})
   }
 
   render() {
     console.log(this.state)
     return (
       <div>
-        <div>Plus Count: {this.state.plusCount} </div>
-        <div>Minus Count: {this.state.minusCount} </div>
-        <h1>Total Count: {this.state.totalCount} </h1>
-        <button onClick={this.handlePlusCount}>+1</button>
-        <button onClick={this.handleMinusCount}>-1</button>
+        <div>I am {this.props.name}</div>
+        <div>count: {this.state.count}</div>
+        <button onClick={ this.handlePlusCount }>+</button>
+        <button onClick={ this.handleMinusCount }>-</button>
       </div>
     )
   }
